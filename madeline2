@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: ubuntu:18.04
+
+%help
+This is a containerised version of the Madeline 2.0 Pedigree Drawing Engine (https://madeline.med.umich.edu/madeline/)
+
+%labels
+    MAINTAINER Leah Kemp (leah.kemp@esr.cri.nz)
+    VERSION 0.1
+
+%post
+    apt-get -y update
+    apt-get -y install git cmake build-essential libcurl4-openssl-dev libssl-dev libxml2-dev gettext
+    git clone https://github.com/piratical/Madeline_2.0_PDE.git
+    cd Madeline_2.0_PDE/
+    ./configure --with-include-gettext
+    make
+    make install
